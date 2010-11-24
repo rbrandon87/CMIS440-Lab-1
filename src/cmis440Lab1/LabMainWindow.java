@@ -626,6 +626,10 @@ public class LabMainWindow extends javax.swing.JFrame
         Toolkit.getDefaultToolkit().beep();
     }
     /** Remove 'file:/' , if filename present(remove it), add output.txt to end
+    * The regex below will find the file:/ at the beginning of the url, if
+    * present, and will then capture into group 1 the full path to the
+    * application directory. It will then find, if ran as a jar file, the name
+    * of the jar file w/ extension and omit it.
     * @TheCs Cohesion - Removes 'file:/' from the beginning, if filename is
     *                   present then remove it, and finally add output.txt
     *                   to the end.
@@ -640,24 +644,22 @@ public class LabMainWindow extends javax.swing.JFrame
     *           add output.txt to the end.
     * Consistency - It uses the same syntax rules as the rest of the class and
     *               continues to use proper casing and indentation.
+    *
     * @exception General exception capture
+    * @throws exception if regex fails for unexpected reason
     */
-    public void filterOutputFileName(){
+    public void filterOutputFileName() throws Exception{
         try{
-            if (outputFileName.contains("file:/")){
-                outputFileName = outputFileName.substring(outputFileName
-                        .indexOf("/") + 1);
-            }
-            String extRegex = "(.*/).*[^/]\\.\\p{Alpha}*";
+
+            String extRegex = "(?:file:\\/)?(.*\\/)(?:.*[^\\/]\\.\\p{Alpha}*)?";
             Pattern pattern = Pattern.compile(extRegex);
             Matcher matcher = pattern.matcher(outputFileName);
             if (matcher.find()){
                 outputFileName = matcher.group(1);
+            }else{
+                throw new Exception("Error with File Regex Filter");
             }
 
-            if (!outputFileName.endsWith("/")){
-                outputFileName = outputFileName + "/";
-            }
             outputFileName += "output.txt";
         }catch (Exception exception){
             JOptionPane.showMessageDialog(null,exception.getMessage(),

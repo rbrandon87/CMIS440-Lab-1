@@ -107,7 +107,7 @@ public class FileResults {
     * Consistency - It uses the same syntax rules as the rest of the class and
     *               continues to use proper casing and indentation.
     */
-    public Map getWordMap(){
+    public Map<String, Integer> getWordMap(){
         return myWordMap;
     }
 
@@ -140,17 +140,18 @@ public class FileResults {
         myFormattedResults.append("\n-----------------------------------\n");
         formattedLine = String.format(format,"Word","Total Count");
         myFormattedResults.append(formattedLine);
-        formattedLine = String.format(format,"---------------","---------------");
+        formattedLine = String.format(format,"---------------",
+                "---------------");
         myFormattedResults.append(formattedLine);
 
-        Set< String > keys = myWordMap.keySet();
+        Set< String > keys = getWordMap().keySet();
         TreeSet < String > sortedKeys = new TreeSet< String >( keys);
 
         for (String key : sortedKeys){
             formattedLine = String.format(format,key.length() <= maxLength ?
-                key : key.substring(0, maxLength),myWordMap.get(key));
+                key : key.substring(0, maxLength),getWordMap().get(key));
             myFormattedResults.append(formattedLine);
-            numberOfWords += myWordMap.get(key);
+            numberOfWords += getWordMap().get(key);
         }
 
         myFormattedResults.append("-----------------------------------\n");

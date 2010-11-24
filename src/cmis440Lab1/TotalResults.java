@@ -64,7 +64,7 @@ public class TotalResults {
     *               continues to use proper casing and indentation.
     * @param aFileMap contains unique words/count from FileResult objects.
     */
-    public void setTotalWordMap(Map aFileMap){
+    public void setTotalWordMap(Map< String, Integer > aFileMap){
         Set< String > keys = aFileMap.keySet();
         TreeSet < String > sortedKeys = new TreeSet< String >( keys );
 
@@ -92,7 +92,7 @@ public class TotalResults {
     * Consistency - It uses the same syntax rules as the rest of the class and
     *               continues to use proper casing and indentation.
     */
-    public Map getTotalWordMap(){
+    public Map<String, Integer> getTotalWordMap(){
         return myTotalWordMap;
     }
 
@@ -124,13 +124,13 @@ public class TotalResults {
                 "---------------");
         myTotalFormattedResults.append(formattedLine);
 
-        Set< String > keys = myTotalWordMap.keySet();
+        Set< String > keys = getTotalWordMap().keySet();
         TreeSet < String > sortedKeys = new TreeSet< String >( keys );
         for (String key : sortedKeys){
             formattedLine = String.format(format,key.length() <= maxLength ?
-                key : key.substring(0, maxLength),myTotalWordMap.get(key));
+                key : key.substring(0, maxLength),getTotalWordMap().get(key));
             myTotalFormattedResults.append(formattedLine);
-            numberOfWords += myTotalWordMap.get(key);
+            numberOfWords += getTotalWordMap().get(key);
         }
 
         myTotalFormattedResults.append("-----------------------------------\n");
