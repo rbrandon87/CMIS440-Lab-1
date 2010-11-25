@@ -43,7 +43,7 @@ public class WordCounter implements WordCounterInterface {
     private final TotalResults myTotalResults;//Shared object.
     FileResults myFileResults;//FileResults object for one file.
     private String myTempLineHolder = "";// Hold line input from file being read
-    String myWordDelimiter = "\\p{Zs}";
+    String myWordDelimiter = "\\p{Zs}"; //Default is a space
     Boolean myCaseSensitiveCheck = false;
     BufferedReader readInputFile = null;
 

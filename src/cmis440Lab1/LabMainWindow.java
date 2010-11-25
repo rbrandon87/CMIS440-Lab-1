@@ -7,6 +7,8 @@ package cmis440Lab1;
 * IDE: NetBeans 6.9.1
 * OS: Windows 7
 * Java: JDK 1.6.0_22
+* Files: LabMainWindow.java, ThreadControl.java, WordCounter.java,
+*        FileResults.java, TotalResults.java, WordCounterInterface.java
 *
 * Program Requirements: GUI Based, include JFileChooser, use atleast 4 different
 * UI controls from Chp. 14, include a menu, use a generic Map, including reading
@@ -35,7 +37,10 @@ package cmis440Lab1;
 * through research that it was because I was not calling get() in my done method
 * , however I tried this and it did not work. The exceptions are being handled,
 * however, just not in the way I wanted them to. At this point, however, I just
-* don't have enough time to figure it out.
+* don't have enough time to figure it out. Also, my output sent to the textarea
+* is limited to 15 characters per word. I set this hard limit so that the output
+* would have a more consistent look. I decided on 15 after researching some of
+* the bigger words in the English language and decided 15 would fit most words.
 */
 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -355,8 +360,8 @@ public class LabMainWindow extends javax.swing.JFrame
     *                the file processing.
     * Convenience - Simply calls the startProcessingFiles method and begins the
     *               file processing.
-    * Clarity - It is simple to understand that this calls the startProcessingFiles
-    *           method to begin the file processing.
+    * Clarity - It is simple to understand that this calls the 
+     *          startProcessingFiles method to begin the file processing.
     * Consistency - It uses the same syntax rules as the rest of the class and
     *               continues to use proper casing and indentation.
     */

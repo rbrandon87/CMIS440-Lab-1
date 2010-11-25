@@ -107,7 +107,7 @@ public class FileResults {
     * Consistency - It uses the same syntax rules as the rest of the class and
     *               continues to use proper casing and indentation.
     */
-    public Map<String, Integer> getWordMap(){
+    public Map< String, Integer > getWordMap(){
         return myWordMap;
     }
 
