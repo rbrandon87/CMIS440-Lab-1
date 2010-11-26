@@ -82,8 +82,8 @@ public class ThreadControl extends SwingWorker<Void, Void>{
                 if (tempDirCheck.isDirectory()){
                     myFileNames = tempDirCheck.list(aFilter);
                     for(int i = 0; i< myFileNames.length; i++){
-                        myFileNames[i] = tempDirCheck.toString() + "\\"
-                                + myFileNames[i];
+                        myFileNames[i] = tempDirCheck.toString() 
+                                + File.separator + myFileNames[i];
                     }
                 }else{
                     myFileNames = fileArguments;//Specified filesnames from args
