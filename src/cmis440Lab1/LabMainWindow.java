@@ -634,7 +634,9 @@ public class LabMainWindow extends javax.swing.JFrame
     * The regex below will find the file:/ at the beginning of the url, if
     * present, and will then capture into group 1 the full path to the
     * application directory. It will then find, if ran as a jar file, the name
-    * of the jar file w/ extension and omit it.
+    * of the jar file w/ extension and omit it. Also, makes a call to os.name
+    * If OS is Linux is it appends a '/' to the beginning of the file path, if
+    * not already there.
     * @TheCs Cohesion - Removes 'file:/' from the beginning, if filename is
     *                   present then remove it, and finally add output.txt
     *                   to the end.
@@ -665,6 +667,11 @@ public class LabMainWindow extends javax.swing.JFrame
                 throw new Exception("Error with File Regex Filter");
             }
 
+            if (System.getProperty("os.name").toLowerCase().contains("linux")){
+                if (!outputFileName.substring(0, 0).equals("/")){
+                    outputFileName = "/" + outputFileName;
+                }
+            }
             outputFileName += "output.txt";
         }catch (Exception exception){
             JOptionPane.showMessageDialog(null,exception.getMessage(),
